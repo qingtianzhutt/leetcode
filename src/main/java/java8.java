@@ -1,0 +1,2 @@
+public class java8 {
+}
