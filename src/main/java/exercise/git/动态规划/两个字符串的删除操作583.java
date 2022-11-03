@@ -53,7 +53,6 @@ public class 两个字符串的删除操作583 {
         String s = "leetcode";
         String t = "etco";
         System.out.println(minDistance2(s, t));
-        System.out.println(1);
     }
 
 }
