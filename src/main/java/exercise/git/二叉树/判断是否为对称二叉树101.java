@@ -50,6 +50,7 @@ public class 判断是否为对称二叉树101 {
      * 迭代法
      * 使用双端队列，相当于两个栈
      */
+    //这种deque可以模拟两个栈。自己也可以想出来。
     public boolean isSymmetric2(TreeNode root) {
         Deque<TreeNode> deque = new LinkedList<>();
         deque.offerFirst(root.left);
@@ -95,6 +96,47 @@ public class 判断是否为对称二叉树101 {
             deque.offer(rightNode.right);
             deque.offer(leftNode.right);
             deque.offer(rightNode.left);
+        }
+        return true;
+    }
+
+
+
+    public boolean isSymmetric4(TreeNode root) {
+        if (root == null)return true;
+        if (root.left == null && root.right == null) {
+            return true;
+        }
+        if (root.left == null || root.right == null) {
+            return false;
+        }
+        if (root.left.val != root.right.val) return false;
+        return isSymmetric4(root.left) && isSymmetric4(root.right);
+    }
+
+    //使用队列
+    public boolean isSymmetric5(TreeNode root) {
+        if (root == null)return true;
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(root.left);
+        que.offer(root.right);
+        while (!que.isEmpty()){
+            int len = que.size();
+            while(len-- > 0){
+                TreeNode left = que.poll();
+                TreeNode right = que.poll();
+                if (left == null && right == null) {
+                    continue;
+                }
+                if (left == null || right == null || left.val != right.val) {
+                    return false;
+                }
+                //这里的进栈顺序就是一会的出栈顺序，进去的左右左右 是对称的一组。  左右都可以。
+                que.offer(left.left);
+                que.offer(right.right);
+                que.offer(right.left);
+                que.offer(left.right);
+            }
         }
         return true;
     }
