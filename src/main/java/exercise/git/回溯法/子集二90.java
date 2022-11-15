@@ -3,9 +3,15 @@ package exercise.git.回溯法;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-//给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
+/*
+给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
+说明：解集不能包含重复的子集。
+示例:
+输入: [1,2,2]
+输出: [ [2], [1], [1,2,2], [2,2], [1,2], [] ]
+ */
 //说明：解集不能包含重复的子集。
+//注意这里为什么要保证有序？   一开始其实是不明白的。
 public class 子集二90 {
     private List<List<Integer>> res = new ArrayList<>();
     private List<Integer> path = new ArrayList<>();
@@ -23,7 +29,6 @@ public class 子集二90 {
             path.add(nums[i]);
             dfs(nums, i + 1);
             path.remove(path.size() - 1);
-
         }
     }
     //使用数组来表示是否使用过。
@@ -44,7 +49,6 @@ public class 子集二90 {
             dfs(nums, i + 1);
             used[i] = 0;
             path.remove(path.size() - 1);
-
         }
     }
 }

@@ -32,4 +32,20 @@ public class 验证二叉搜索树98 {
         }
         return true;
     }
+
+    //递归方法，直接遍历就行了
+    private long max = Long.MIN_VALUE;
+    public boolean isValidBST2(TreeNode root) {
+        if (root == null) return false;
+        boolean l = true;
+        if (root.left != null){
+            l = isValidBST2(root.left);
+        }
+        if (!l)return false;
+        if (root.val <= max) {
+            return false;
+        }
+        max = root.val;
+        return root.right == null || isValidBST2(root.right);
+    }
 }

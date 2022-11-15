@@ -3,7 +3,9 @@ package exercise.git.回溯法;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //理解本题后，要解决如下三个问题：
 //
@@ -38,7 +40,43 @@ public class 电话号码的字母组合17 {
 
     @Test
     public void test(){
-        String s = "223";
-        System.out.println(letterCombinations(s));
+        String s = "23";
+        System.out.println(s.substring(0, s.length() - 1));
+        System.out.println(letterCombinations2(s));
     }
+
+    public List<String> letterCombinations2(String digits) {
+        Map<Character, String> map = new HashMap<Character, String>(){{
+            put('2', "abc");
+            put('3',"def");
+            put('4',"ghi");
+            put('5',"jkl");
+            put('6',"mno");
+            put('7',"pqrs");
+            put('8',"tuv");
+            put('9',"wxyz");
+        }};
+        List<String> res = new ArrayList<>();
+        if (digits == null || digits.length() == 0) {
+            return res;
+        }
+        dfs2(digits, map, new StringBuilder(""), res);
+        return res;
+    }
+    public void dfs2(String digits, Map<Character, String> map, StringBuilder sb, List<String> res){
+        if (sb.length() == digits.length()){
+            res.add(new String(sb));
+            return;
+        }
+        String s = map.get(digits.charAt(sb.length()));
+        for (int i = 0; i < s.length(); i++){
+            sb.append(s.charAt(i));
+            dfs2(digits, map, sb, res);
+            //这里注意是删除，之前写错了，写成 sb.substring(0, sb.length() - 1);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
+    }
+
+
 }

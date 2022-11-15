@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
-
+/*
+给定一个字符串 s，将 s 分割成一些子串，使每个子串都是回文串。
+返回 s 所有可能的分割方案。
+示例: 输入: "aab" 输出: [ ["aa","b"], ["a","a","b"] ]
+ */
 //调试几把通过
 public class 分隔回文串131 {
     List<List<String>> lists = new ArrayList<>();
@@ -61,6 +65,22 @@ public class 分隔回文串131 {
             if (isPalindrome1(temp)) {
                 deque.add(temp);
                 dfs(s, i + 1);
+                deque.removeLast();
+            }
+        }
+    }
+    //从start开始找回文子串。
+    private void dfs3(String s, int start){
+        if (start >= s.length()) {
+            lists.add(new ArrayList<>(deque));
+            return;
+        }
+        //这里的i指的是能被截取的最长大小，所以可以为s.length()
+        for (int i = start + 1; i <= s.length(); i++){
+            String temp = s.substring(start, i);
+            if (isPalindrome1(temp)) {
+                deque.add(temp);
+                dfs3(s, i);
                 deque.removeLast();
             }
         }

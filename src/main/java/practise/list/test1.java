@@ -1,7 +1,9 @@
 package practise.list;
+
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class test1 {
@@ -64,6 +66,16 @@ public class test1 {
             l.add(t);
         }
         System.out.println(l);
+        //int[] Integer[]转换
+        Integer[] arr1 = {1,2,3};
+        int[] arr2 = Arrays.stream(arr1).mapToInt(Integer::valueOf).toArray();
+
+        int[] arr11 = {1,2,3};
+        Integer[] arr22 = Arrays.stream(arr11).boxed().toArray(Integer[]::new);
+
+
+
+
 
     }
 }
