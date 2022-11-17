@@ -105,7 +105,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.1.254.22:7001/eureka/
+      defaultZone: http://localhost:18081/eureka/
 ribbon:
   MaxAutoRetries: 2 #最大重试次数，当Eureka中可以找到服务，但是服务连不上时将会重试
   MaxAutoRetriesNextServer: 3 #切换实例的重试次数

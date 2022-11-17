@@ -24,15 +24,15 @@ public class RibbonTest {
 //        String s = restTemplate.getForEntity("http://CONSUMER2/ribbonTest2", String.class).getBody();
         ServiceInstance si = loadBalancerClient.choose("CONSUMER2");
 
-        System.out.println("Host: " + si.getHost());
-        System.out.println("port: " + si.getPort());
-        System.out.println("InstanceId: " + si.getInstanceId());
-        System.out.println("Metadata: " + si.getMetadata());
-        System.out.println("Scheme: " + si.getScheme());
-        System.out.println("ServiceId: " + si.getServiceId());
-        System.out.println("Uri: " + si.getUri());
+//        System.out.println("Host: " + si.getHost());
+//        System.out.println("port: " + si.getPort());
+//        System.out.println("InstanceId: " + si.getInstanceId());
+//        System.out.println("Metadata: " + si.getMetadata());
+//        System.out.println("Scheme: " + si.getScheme());
+//        System.out.println("ServiceId: " + si.getServiceId());
+//        System.out.println("Uri: " + si.getUri());
 
-        String forObject = restTemplate.getForObject("http://CONSUMER2/ribbonTest2", String.class);
+        String forObject = restTemplate.getForObject("http://localhost:19999/ribbonTest2", String.class);
         System.out.println(forObject);
     }
 

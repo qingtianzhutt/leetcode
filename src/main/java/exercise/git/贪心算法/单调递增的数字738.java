@@ -60,12 +60,45 @@ public class 单调递增的数字738 {
 
     @Test
     public void test(){
-        int s = 10;
-        System.out.println(monotoneIncreasingDigits2(s));
+        int s = 133452;
+        System.out.println(monotoneIncreasingDigits5(s));
     }
 
 
     public int monotoneIncreasingDigits5(int N) {
-        return 1;
+        String s = String.valueOf(N);
+        StringBuilder sb = new StringBuilder();
+        int sameCount = 0;
+        boolean isIncrease = true;
+        for (int i = 0; i < s.length() - 1; i++){
+            if (s.charAt(i + 1) > s.charAt(i)){
+                if (sameCount != 0){
+                    while(sameCount != 0){
+                        sameCount--;
+                        sb.append(s.charAt(i));
+                    }
+                }
+                sb.append(s.charAt(i));
+            }else if(s.charAt(i + 1) == s.charAt(i)){
+                sameCount++;
+            }else{
+                sb.append(s.charAt(i) - '1');
+                isIncrease = false;
+                break;
+            }
+        }
+        if (isIncrease){
+            sb.append(s.charAt(s.length() - 1));
+        }else {
+            fillRes(sb, s);
+        }
+        return Integer.parseInt(sb.toString());
     }
+    private void fillRes(StringBuilder sb, String s){
+        int num = s.length() - sb.length();
+        while(num-- != 0){
+            sb.append('9');
+        }
+    }
+
 }
