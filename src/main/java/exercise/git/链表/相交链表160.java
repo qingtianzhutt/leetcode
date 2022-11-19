@@ -7,6 +7,9 @@ package exercise.git.链表;
 //一次通过。
 public class 相交链表160 {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
         ListNode tempA = headA, tempB = headB;
         int lenA = 0, lenB = 0;
         while(tempA.next != null){
