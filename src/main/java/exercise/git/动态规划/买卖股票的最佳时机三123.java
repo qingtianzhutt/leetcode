@@ -42,4 +42,61 @@ public class 买卖股票的最佳时机三123 {
         }
         return dp[prices.length - 1][3];
     }
+
+
+
+    public int maxProfit121(int[] prices) {
+        int res = 0;
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int least = prices[0];
+        for (int i = 1; i < prices.length; i++){
+            res = Math.max(res, prices[i] - least);
+            least = Math.min(prices[i], least);
+        }
+        return res;
+    }
+
+    public int maxProfit122(int[] prices) {
+        int res = 0;
+        for (int i = 0; i < prices.length - 1; i++){
+            if (prices[i + 1] > prices[i]){
+                res += prices[i + 1] - prices[i];
+            }
+        }
+        return res;
+    }
+    public int maxProfit122dp(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int[][] dp = new int[prices.length][2];
+        dp[0][0] = -prices[0];
+        dp[0][1] = 0;
+        for (int i = 1; i < prices.length; i++){
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] - prices[i]);
+            dp[i][1] = Math.max(dp[i - 1][0] + prices[i], dp[i - 1][1]);
+        }
+        return dp[prices.length - 1][1];
+    }
+
+
+    public int maxProfit123dp(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int[][] dp = new int[prices.length][5];
+        dp[0][0] = -prices[0];
+        dp[0][1] = 0;
+        dp[0][2] = -prices[0];
+        dp[0][3] = 0;
+        for (int i = 1; i < prices.length; i++){
+            dp[i][0] = Math.max(dp[i - 1][0], -prices[i]);
+            dp[i][1] = Math.max(dp[i - 1][0] + prices[i], dp[i - 1][1]);
+            dp[i][2] = Math.max(dp[i - 1][2], dp[i - 1][1] - prices[i]);
+            dp[i][3] = Math.max(dp[i - 1][3], dp[i - 1][2] + prices[i]);
+        }
+        return dp[prices.length - 1][3];
+    }
 }
