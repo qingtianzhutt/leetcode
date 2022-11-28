@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 public class GetArmModeResult {
     public GetArmModeResult(List<Mode> armMode) {
+
         this.armMode = armMode;
     }
 
