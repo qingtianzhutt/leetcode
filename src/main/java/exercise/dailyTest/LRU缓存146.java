@@ -1,8 +1,10 @@
 package exercise.dailyTest;
 
-import java.util.Arrays;
+
+import java.util.ArrayList;
 
 public class LRU缓存146 {
+    private static ArrayList list;
     public LRU缓存146(int capacity) {
 
     }
